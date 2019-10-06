@@ -1,0 +1,23 @@
+{
+    "name": "tkouleris/miniframework",
+    "description": "A mini php framework",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Thodoris Kouleris",
+            "email": "tkouleris@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Framework\\":"framework/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
