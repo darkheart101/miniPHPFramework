@@ -12,8 +12,23 @@ class Route{
 
     public function get( $url , $controller, $method )
     {
+
         array_push(
                     $this->routing, array(
+                                    'http_method'=>'GET',
+                                    'url'=>$url,
+                                    'controller'=> $controller,
+                                    'method' => $method
+                    )
+                  );
+    }
+
+    public function post( $url , $controller, $method )
+    {
+
+        array_push(
+                    $this->routing, array(
+                                    'http_method'=>'POST',
                                     'url'=>$url,
                                     'controller'=> $controller,
                                     'method' => $method

@@ -20,16 +20,19 @@ class Framework{
     public function init()
     {
         $requested_uri = $_SERVER['REQUEST_URI'];
+        $http_method = $_SERVER['REQUEST_METHOD'];
         foreach( $this->route->routing() as $route)
         {
-
-            if( '/'.$route['url'] == $requested_uri)
+            if( $http_method == $route['http_method'])
             {
-                $class = "\\App\\Controllers\\".$route['controller'];
-                $controller = new $class;
-                $method = $route['method'];
-                $controller->$method();
-                break;
+                if( '/'.$route['url'] == $requested_uri)
+                {
+                    $class = "\\App\\Controllers\\".$route['controller'];
+                    $controller = new $class;
+                    $method = $route['method'];
+                    $controller->$method();
+                    break;
+                }
             }
         }
 
