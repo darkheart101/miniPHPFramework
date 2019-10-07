@@ -1,1 +1,1 @@
-<h1>Test View</h1>
+<h1><?php echo $view_variables['test'] ?></h1>

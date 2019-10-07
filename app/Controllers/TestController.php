@@ -9,6 +9,6 @@ class TestController
     public function test()
     {
         $view = new View;
-        return $view->view('test.view.php');
+        return $view->view('test.view.php', ['test'=> 'test']);
     }
 }
