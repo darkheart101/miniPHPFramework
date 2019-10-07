@@ -1,7 +1,8 @@
 <?php
 
 use Framework\Framework;
+use Framework\Route;
 
-$framework = new Framework;
+$framework = new Framework( new Route );
 
 $framework->routes()->get('testurl', 'TestController','test');

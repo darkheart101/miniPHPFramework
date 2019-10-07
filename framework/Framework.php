@@ -7,9 +7,9 @@ class Framework{
 
     protected $route;
 
-    public function __construct()
+    public function __construct(Route $route)
     {
-        $this->route = new Route;
+        $this->route = $route;
     }
 
     public function routes()

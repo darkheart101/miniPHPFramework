@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 
+use Framework\View;
+
 class TestController
 {
     public function test()
     {
-        echo "Hello World!";
+        $view = new View;
+        return $view->view('test.view.php');
     }
 }
