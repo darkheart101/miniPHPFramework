@@ -2,14 +2,17 @@
 
 namespace Framework;
 
+use Exception;
 
 class Framework{
 
     protected $route;
+    protected $request;
 
-    public function __construct(Route $route)
+    public function __construct(Route $route, Request $request)
     {
         $this->route = $route;
+        $this->request = $request;
     }
 
     public function routes()
@@ -19,22 +22,21 @@ class Framework{
 
     public function init()
     {
-        $requested_uri = $_SERVER['REQUEST_URI'];
-        $http_method = $_SERVER['REQUEST_METHOD'];
         foreach( $this->route->routing() as $route)
         {
-            if( $http_method == $route['http_method'])
+            if( $this->request->method() == $route['http_method'])
             {
-                if( '/'.$route['url'] == $requested_uri)
+                if( '/'.$route['url'] == $this->request->request_uri())
                 {
                     $class = "\\App\\Controllers\\".$route['controller'];
                     $controller = new $class;
                     $method = $route['method'];
-                    $controller->$method();
-                    break;
+                    $controller->$method($this->request);
                 }
+
             }
         }
-
     }
+
+
 }
