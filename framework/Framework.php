@@ -26,6 +26,8 @@ class Framework{
         {
             if( $this->request->method() == $route['http_method'])
             {
+                if($route['url'] == '/') $route['url'] = ''; // ugly fix
+
                 if( '/'.$route['url'] == $this->request->request_uri())
                 {
                     $class = "\\App\\Controllers\\".$route['controller'];
