@@ -5,7 +5,7 @@ namespace Framework;
 class Session{
 
 
-    private $started = false;
+    protected $started = false;
 
 
     public function __construct()
@@ -54,6 +54,11 @@ class Session{
     public function unset()
     {
         return session_unset();
+    }
+
+    public function session_id()
+    {
+        return session_id();
     }
 
 
