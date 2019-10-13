@@ -2,7 +2,7 @@
 The mini PHP Framework is a small framework using MVC pattern, inspired by Laravel.
 
 ## Installation
-Use ---composer update --- .
+Use 'composer update' .
 
 ### Configuration
 Configuration happens in env.php file by setting the environmental variables for
