@@ -6,7 +6,7 @@ class View{
 
     protected $view_folder = '/app/Views/';
 
-    public function view( $file, $view_variables )
+    public function view( $file, $view_variables = null)
     {
         include( $this->get_view_file( $file ));
     }
