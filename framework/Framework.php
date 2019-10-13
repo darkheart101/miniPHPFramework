@@ -27,6 +27,8 @@ class Framework{
 
     protected function database_setup()
     {
+        // define( 'REDBEAN_MODEL_PREFIX', '' );
+        define( 'REDBEAN_MODEL_PREFIX', '\\App\\Models\\' );
 
         if( getenv('DB_DRIVER') == 'mariadb' ){
 
@@ -40,11 +42,13 @@ class Framework{
         if( getenv('DB_DRIVER') == 'postgresql' ){
             R::setup( "pgsql:host=".getenv('DB_HOST').";dbname=".getenv('DB_NAME'),
             getenv('DB_USERNAME'), getenv('DB_PASSWORD') );
-           return;
+
+            return;
         }
 
         if( getenv('DB_DRIVER') == 'sqlite' ){
             R::setup( getenv('FILE') );
+
             return;
         }
 
@@ -55,6 +59,7 @@ class Framework{
             .";port=".getenv('DB_PORT')
             .";dbname=".getenv('DB_NAME'),
             getenv('DB_USERNAME'), getenv('DB_PASSWORD') );
+
             return;
         }
 
