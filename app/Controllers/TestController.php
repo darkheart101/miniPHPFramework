@@ -15,8 +15,6 @@ class TestController
         $view = new View;
         $session = new Session;
 
-
-
         $book = R::dispense( 'book' );
         $book->title = 'Learn to Program';
         $book->rating = 10;

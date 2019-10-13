@@ -20,16 +20,45 @@ class Framework{
         return $this->route;
     }
 
-    public function environment()
+    protected function environment()
     {
         include('../env.php');
     }
 
-    public function database_setup()
+    protected function database_setup()
     {
-        R::setup("mysql:host=".getenv('DB_HOST').
-                 ";dbname=".getenv('DB_NAME'),
-                'root', 'secret' );
+
+        if( getenv('DB_DRIVER') == 'mariadb' ){
+
+            R::setup("mysql:host=".getenv('DB_HOST').
+            ";dbname=".getenv('DB_NAME'),
+           getenv('DB_USERNAME'), getenv('DB_PASSWORD') );
+
+           return;
+        }
+
+        if( getenv('DB_DRIVER') == 'postgresql' ){
+            R::setup( "pgsql:host=".getenv('DB_HOST').";dbname=".getenv('DB_NAME'),
+            getenv('DB_USERNAME'), getenv('DB_PASSWORD') );
+           return;
+        }
+
+        if( getenv('DB_DRIVER') == 'sqlite' ){
+            R::setup( getenv('FILE') );
+            return;
+        }
+
+
+        if( getenv('DB_DRIVER') == 'cubrid' ){
+            R::setup("cubrid:host="
+            .getenv('DB_HOST')
+            .";port=".getenv('DB_PORT')
+            .";dbname=".getenv('DB_NAME'),
+            getenv('DB_USERNAME'), getenv('DB_PASSWORD') );
+            return;
+        }
+
+        return;
     }
 
     public function init()
