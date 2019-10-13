@@ -29,7 +29,7 @@ class TestController
 
         $session->put('test_value',$userid);
 
-        return $view->view('test.view.php', ['test'=> $session->get('test_value')]);
+        return $view->view('test.view.php', ['test'=> $user,'page_title'=>'Model Object']);
     }
 
     public function test_post( Request $request)
