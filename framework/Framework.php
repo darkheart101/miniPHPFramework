@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-use Exception;
+use \RedBeanPHP\R as R;
 
 class Framework{
 
@@ -20,8 +20,23 @@ class Framework{
         return $this->route;
     }
 
+    public function environment()
+    {
+        include('../env.php');
+    }
+
+    public function database_setup()
+    {
+        R::setup("mysql:host=".getenv('DB_HOST').
+                 ";dbname=".getenv('DB_NAME'),
+                'root', 'secret' );
+    }
+
     public function init()
     {
+        $this->environment();
+        $this->database_setup();
+
         foreach( $this->route->routing() as $route)
         {
             if( $this->request->method() == $route['http_method'])

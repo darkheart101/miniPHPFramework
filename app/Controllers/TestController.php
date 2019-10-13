@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Framework\View;
 use Framework\Request;
 use Framework\Session;
+use \RedBeanPHP\R as R;
 
 class TestController
 {
@@ -14,7 +15,15 @@ class TestController
         $view = new View;
         $session = new Session;
 
-        $session->put('test_value',6);
+
+
+        $book = R::dispense( 'book' );
+        $book->title = 'Learn to Program';
+        $book->rating = 10;
+
+        $id = R::store( $book );
+
+        $session->put('test_value',$id);
 
         return $view->view('test.view.php', ['test'=> $session->get('test_value')]);
     }
