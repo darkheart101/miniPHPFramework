@@ -35,6 +35,7 @@ class Framework{
     public function init()
     {
         $this->environment();
+
         $this->database_setup();
 
         foreach( $this->route->routing() as $route)
